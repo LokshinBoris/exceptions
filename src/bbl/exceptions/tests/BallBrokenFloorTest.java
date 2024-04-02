@@ -5,15 +5,19 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import bbl.exceptions.BallBrokenFloor;
+import bbl.exceptions.RangeExceptions;
 
 class BallBrokenFloorTest {
 
 	private static final int N_FLOORS = 100;
+	private static final int N_FLOORS_0 = 0;
 	@Test
 	void test() throws Exception
 	{
-		BallBrokenFloor bbf = new BallBrokenFloor(N_FLOORS);
+		assertThrowsExactly(IllegalArgumentException.class,	() -> BallBrokenFloor.getBallBrokenFloor(N_FLOORS_0));
+		BallBrokenFloor bbf= BallBrokenFloor.getBallBrokenFloor(N_FLOORS);
 		assertEquals(bbf.getBrokenFloor(), getMinBrokenFloor(bbf));
+
 	}
 
 	private int getMinBrokenFloor(BallBrokenFloor bbf) throws Exception 
